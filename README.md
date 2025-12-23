@@ -1,4 +1,4 @@
-# 📌 Dataset Preparation & CNN Model Explanation
+# fish image classification
 
 ## 1️⃣ Dataset Upload (Kaggle → Colab)
 
