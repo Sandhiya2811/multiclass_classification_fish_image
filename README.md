@@ -16,72 +16,82 @@
 * **Input image size:** 224 × 224 × 3 (RGB images)
 * **Total number of output classes:** 11
 
-# 🧠 Model Architecture Breakdown
+## 🧠 Model Architecture Breakdown (Custom CNN)
 
-model = Sequential()
+### 🔹 Sequential Model
+- Layers are stacked **one after another** in a sequential manner.
 
-* Sequential model → layers are stacked one after another
+---
 
-## 🔹 Block 1
+### 🔹 Block 1
+**Components:**
+- 32 convolutional filters (Conv2D)
+- ReLU activation
+- Batch Normalization
+- MaxPooling (2×2)
+- Dropout (30%)
 
-model.add(Conv2D(32, (3,3), activation='relu', input_shape=(224,224,3)))
-model.add(BatchNormalization())
-model.add(MaxPooling2D(2,2))
-model.add(Dropout(0.3))
+**Explanation:**
+- Detects basic features like edges and corners
+- ReLU removes negative values
+- BatchNormalization stabilizes and speeds up training
+- MaxPooling reduces image size
+- Dropout prevents overfitting
 
-# Explanation:
+---
 
-* Conv2D (32 filters) → detects basic features like edges & corners
-* ReLU → removes negative values
-* BatchNormalization → stabilizes & speeds up training
-* MaxPooling (2×2) → reduces image size
-* Dropout (30%) → prevents overfitting
+### 🔹 Block 2
+**Components:**
+- 64 convolutional filters (Conv2D)
+- ReLU activation
+- Batch Normalization
+- MaxPooling (2×2)
+- Dropout (30%)
 
-## 🔹 Block 2
+**Explanation:**
+- Increased filters (64) learn more detailed patterns
+- Normalization, pooling, and dropout provide stability and regularization
 
-model.add(Conv2D(64, (3,3), activation='relu'))
-model.add(BatchNormalization())
-model.add(MaxPooling2D(2,2))
-model.add(Dropout(0.3))
+---
 
-# Explanation:
+### 🔹 Block 3
+**Components:**
+- 128 convolutional filters (Conv2D)
+- ReLU activation
+- Batch Normalization
+- MaxPooling (2×2)
+- Dropout (40%)
 
-* Filters increased to 64 → learns more detailed patterns
-* Same normalization, pooling & dropout for stability
+**Explanation:**
+- 128 filters learn complex features
+- Higher dropout (40%) reduces overfitting
 
-## 🔹 Block 3
+---
 
-model.add(Conv2D(128, (3,3), activation='relu'))
-model.add(BatchNormalization())
-model.add(MaxPooling2D(2,2))
-model.add(Dropout(0.4))
+### 🔹 Fully Connected Layer
+**Components:**
+- Flatten layer
+- Batch Normalization
+- Dense layer with 128 neurons
+- Dropout (50%)
 
-# Explanation:
+**Explanation:**
+- Flatten converts feature maps into a 1D vector
+- Dense layer learns high-level representations
+- Dropout provides strong regularization
 
-* 128 filters → learns complex features
-* Higher dropout (40%) to avoid overfitting
+---
 
-##🔹 Fully Connected Layer
+### 🔹 Output Layer
+**Components:**
+- Dense layer with 11 neurons
+- Softmax activation
 
-model.add(Flatten())
-model.add(BatchNormalization())
-model.add(Dense(128, activation='relu'))
-model.add(Dropout(0.5))
+**Explanation:**
+- 11 neurons represent 11 classes
+- Softmax outputs probabilities for each class
+- The class with the highest probability is the final prediction
 
-# Explanation:
-
-* Flatten → converts feature maps into 1D vector
-* Dense (128 neurons) → learns high-level representations
-* Dropout (50%) → strong regularization
-
-##🔹 Output Layer
-model.add(Dense(11, activation='softmax'))
-
-# Explanation:
-
-* 11 neurons → one for each class
-* Softmax → gives probability for each class
-* Highest probability class = final prediction
 
 ## ⚙️ Model Compilation
 
