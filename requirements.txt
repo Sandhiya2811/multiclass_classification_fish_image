@@ -1,5 +1,8 @@
 streamlit
-tensorflow==2.19.0
+pandas
 numpy
-pillow
+matplotlib
+seaborn
+scikit-learn
+requests
 opencv-python-headless
