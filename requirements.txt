@@ -1,5 +1,6 @@
 streamlit
 tensorflow
 numpy
-scipy
-statsmodels
+pandas
+plotly
+pillow
