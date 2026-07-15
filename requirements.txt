@@ -1,8 +1,5 @@
 streamlit
-pandas
+tensorflow
 numpy
-matplotlib
-seaborn
-scikit-learn
-requests
-opencv-python-headless
+scipy
+statsmodels
